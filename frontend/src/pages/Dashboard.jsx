@@ -106,8 +106,15 @@ export default function Dashboard() {
           {bookings.length > 0 ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: '#f0ece6', borderRadius: 12, overflow: 'hidden', border: '1px solid #e8e5df' }}>
               {bookings.map((booking, idx) => (
-                <div key={booking.id} style={{ background: '#fff', padding: '16px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div>
+                <div key={booking.id} style={{ background: '#fff', padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 16 }}>
+                  {booking.session?.image_url ? (
+                    <img src={booking.session.image_url} alt="" style={{ width: 48, height: 48, borderRadius: 8, objectFit: 'cover' }} />
+                  ) : (
+                    <div style={{ width: 48, height: 48, background: '#f0ece6', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#b5b0a8', fontWeight: 'bold' }}>
+                      {booking.session?.title.substring(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                  <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e', marginBottom: 3 }}>{booking.session?.title}</div>
                     <div style={{ fontSize: 12, color: '#9c9799' }}>
                       {user.role === 'CREATOR'
@@ -150,7 +157,7 @@ export default function Dashboard() {
                     <div style={{ fontSize: 12, color: '#9c9799' }}>
                       {new Date(session.start_time).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                       {' · '}
-                      ${session.price}
+                      ₹{session.price}
                       {' · '}
                       {session.max_capacity} spots
                     </div>

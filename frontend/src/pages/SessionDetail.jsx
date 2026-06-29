@@ -128,7 +128,7 @@ const CheckoutForm = ({ session, clientSecret, onCancel }) => {
             cursor: processing ? 'not-allowed' : 'pointer', fontFamily: 'Inter, sans-serif', transition: 'background 0.2s'
           }}
         >
-          {processing ? 'Processing...' : `Pay $${session.price}`}
+          {processing ? 'Processing...' : `Pay ₹${session.price}`}
         </button>
       </div>
     </form>
@@ -176,13 +176,18 @@ export default function SessionDetail() {
 
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
-      {/* Back */}
-      <button
-        onClick={() => navigate(-1)}
-        style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', color: '#9c9799', fontSize: 13, fontWeight: 500, cursor: 'pointer', marginBottom: 32, padding: 0, fontFamily: 'Inter, sans-serif' }}
-      >
-        <IconChevronLeft /> Back
-      </button>
+      {/* Header */}
+      <div style={{ marginBottom: 40, marginTop: 10 }}>
+        <button onClick={() => navigate(-1)} style={{ background: 'none', border: 'none', padding: 0, color: '#9c9799', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', marginBottom: 24, textDecoration: 'none', fontFamily: 'Inter, sans-serif' }}>
+          <IconChevronLeft /> Back
+        </button>
+        {session.image_url && (
+          <img src={session.image_url} alt="" style={{ width: '100%', height: 320, objectFit: 'cover', borderRadius: 16, marginBottom: 24 }} />
+        )}
+        <h1 style={{ fontSize: 36, fontWeight: 800, color: '#1a1a2e', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 20 }}>
+          {session.title}
+        </h1>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 32, alignItems: 'start' }}>
 
@@ -246,7 +251,7 @@ export default function SessionDetail() {
           <div style={{ background: '#fff', border: '1px solid #e8e5df', borderRadius: 16, padding: 24, boxShadow: '0 8px 32px rgba(0,0,0,0.07)' }}>
             <div style={{ paddingBottom: 18, marginBottom: 18, borderBottom: '1px solid #f0ece6' }}>
               <div style={{ fontSize: 12, color: '#b5b0a8', marginBottom: 4 }}>Price per session</div>
-              <div style={{ fontSize: 36, fontWeight: 800, color: '#1a1a2e', letterSpacing: '-0.02em' }}>${session.price}</div>
+              <div style={{ fontSize: 36, fontWeight: 800, color: '#1a1a2e', letterSpacing: '-0.02em' }}>₹{session.price}</div>
             </div>
 
             {user ? (
@@ -295,7 +300,7 @@ export default function SessionDetail() {
                   <div style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>{session.title}</div>
                   <div style={{ fontSize: 12, color: '#9c9799', marginTop: 2 }}>1 session</div>
                 </div>
-                <div style={{ fontWeight: 800, fontSize: 18, color: '#1a1a2e' }}>${session.price}</div>
+                <div style={{ fontWeight: 800, fontSize: 18, color: '#1a1a2e' }}>₹{session.price}</div>
               </div>
             </div>
 

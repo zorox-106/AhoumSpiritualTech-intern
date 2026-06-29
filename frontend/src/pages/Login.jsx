@@ -1,8 +1,8 @@
-import { useAuth } from '../AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { signInWithGoogle } from '../firebase';
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const GoogleIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24">
@@ -13,12 +13,10 @@ const GoogleIcon = () => (
   </svg>
 );
 
-
-
 export default function Login() {
   const { login, user } = useAuth();
   const navigate = useNavigate();
-  const [loadingProvider, setLoadingProvider] = useState(null); // 'google' | 'github' | null
+  const [loadingProvider, setLoadingProvider] = useState(null);
 
   useEffect(() => {
     if (user) navigate('/dashboard');
@@ -30,11 +28,9 @@ export default function Login() {
       let token;
 
       if (provider === 'google') {
-        // Real Firebase Google OAuth flow — opens Google popup
         token = await signInWithGoogle();
       }
 
-      // Send the real token to Django backend — it verifies and issues a JWT
       const res = await axios.post('/api/users/auth/oauth/', { provider, token });
       login(res.data.access);
       navigate('/dashboard');
@@ -83,7 +79,6 @@ export default function Login() {
     <div style={{ minHeight: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       <div style={{ width: '100%', maxWidth: 400 }}>
-        {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{ margin: '0 auto 16px', display: 'block' }}>
             <circle cx="12" cy="12" r="10" stroke="#1a1a2e" strokeWidth="1.5"/>
@@ -93,7 +88,6 @@ export default function Login() {
           <p style={{ color: '#9c9799', fontSize: 14 }}>Continue to the Sessions Marketplace</p>
         </div>
 
-        {/* Card */}
         <div style={{ background: '#fff', border: '1px solid #e8e5df', borderRadius: 16, padding: 28 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <OAuthButton provider="google" label="Continue with Google" icon={<GoogleIcon />} />

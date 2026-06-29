@@ -66,28 +66,19 @@ export default function Home() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
         {sessions.map(session => (
           <div key={session.id} className="session-card" onClick={() => navigate(`/session/${session.id}`)}>
-            {/* Image */}
-            {session.image_url ? (
-              <img src={session.image_url} alt="" style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: '16px 16px 0 0' }} />
-            ) : (
-              <div style={{ height: 4, background: `hsl(${session.id * 60}, 60%, 60%)`, borderRadius: '16px 16px 0 0' }} />
-            )}
+            {/* Top color strip */}
+            <div style={{ height: 4, background: `hsl(${session.id * 60}, 60%, 60%)`, borderRadius: '16px 16px 0 0' }} />
 
             <div style={{ padding: '20px 22px 22px' }}>
               {/* Creator row */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                <img
-                  src={session.creator?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.creator?.first_name || 'C')}&size=40&background=1a1a2e&color=fff`}
-                  alt=""
-                  style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
-                />
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: '#1a1a2e' }}>
                     {session.creator?.first_name} {session.creator?.last_name}
                   </div>
                   <div style={{ fontSize: 12, color: '#b5b0a8' }}>Session Host</div>
                 </div>
-                <span className="price-badge">₹{session.price}</span>
+                <span className="price-badge">${session.price}</span>
               </div>
 
               {/* Title + desc */}

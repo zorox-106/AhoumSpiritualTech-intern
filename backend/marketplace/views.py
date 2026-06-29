@@ -1,7 +1,11 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
+from django.db import transaction
+from django.utils import timezone
+from datetime import timedelta
 from .models import Session, Booking
+from users.models import User
 from .serializers import SessionSerializer, BookingSerializer
 from django.conf import settings
 from rest_framework.views import APIView
@@ -9,6 +13,41 @@ import stripe
 import os
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def seed_db(request):
+    creator1, _ = User.objects.get_or_create(
+        email='sadhguru@ahoum.com', 
+        defaults={'username': 'sadhguru', 'role': 'CREATOR', 'first_name': 'Sadhguru', 'last_name': 'Jaggi', 'avatar_url': 'https://upload.wikimedia.org/wikipedia/commons/8/87/Sadhguru_Jaggi_Vasudev.jpg'}
+    )
+    creator2, _ = User.objects.get_or_create(
+        email='sri@ahoum.com', 
+        defaults={'username': 'srisri', 'role': 'CREATOR', 'first_name': 'Sri Sri', 'last_name': 'Ravi Shankar', 'avatar_url': 'https://upload.wikimedia.org/wikipedia/commons/9/93/Sri_Sri_Ravi_Shankar_in_2017.jpg'}
+    )
+    
+    if Session.objects.count() == 0:
+        Session.objects.create(
+            creator=creator1,
+            title='Inner Engineering Masterclass',
+            description='A comprehensive guide to managing your inner energies and finding ultimate peace through ancient yogic sciences.',
+            price=199.99,
+            start_time=timezone.now() + timedelta(days=2),
+            end_time=timezone.now() + timedelta(days=2, hours=2),
+            max_capacity=50
+        )
+        Session.objects.create(
+            creator=creator2,
+            title='Art of Living Workshop',
+            description='Discover the power of breathing techniques (Sudarshan Kriya) and meditation to relieve stress and anxiety.',
+            price=149.00,
+            start_time=timezone.now() + timedelta(days=5),
+            end_time=timezone.now() + timedelta(days=5, hours=3),
+            max_capacity=100
+        )
+        return Response({"message": "Successfully seeded the database!"})
+    
+    return Response({"message": "Sessions already exist. Skipping seed."})
 
 class IsCreatorOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -51,7 +90,7 @@ class CreatePaymentIntentView(APIView):
             # Create a PaymentIntent with the order amount and currency
             intent = stripe.PaymentIntent.create(
                 amount=int(session_obj.price * 100), # amount in cents
-                currency='inr',
+                currency='usd',
                 metadata={'session_id': session_id, 'user_id': request.user.id},
                 automatic_payment_methods={
                     'enabled': True,

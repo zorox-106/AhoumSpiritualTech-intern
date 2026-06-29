@@ -2,7 +2,7 @@ import { useAuth } from '../AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { signInWithGoogle, signInWithGithub } from '../firebase';
+import { signInWithGoogle } from '../firebase';
 
 const GoogleIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24">
@@ -13,11 +13,7 @@ const GoogleIcon = () => (
   </svg>
 );
 
-const GithubIcon = () => (
-  <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-  </svg>
-);
+
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -36,9 +32,6 @@ export default function Login() {
       if (provider === 'google') {
         // Real Firebase Google OAuth flow — opens Google popup
         token = await signInWithGoogle();
-      } else {
-        // Real Firebase GitHub OAuth flow — opens GitHub popup
-        token = await signInWithGithub();
       }
 
       // Send the real token to Django backend — it verifies and issues a JWT
@@ -104,11 +97,10 @@ export default function Login() {
         <div style={{ background: '#fff', border: '1px solid #e8e5df', borderRadius: 16, padding: 28 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <OAuthButton provider="google" label="Continue with Google" icon={<GoogleIcon />} />
-            <OAuthButton provider="github" label="Continue with GitHub" icon={<GithubIcon />} />
           </div>
 
           <div style={{ background: '#f8f7f4', border: '1px solid #e8e5df', borderRadius: 10, padding: '12px 14px', fontSize: 12.5, color: '#7a7585', lineHeight: 1.6, marginTop: 20 }}>
-            <strong style={{ color: '#1a1a2e' }}>Real OAuth active</strong> — Clicking above opens an actual Google/GitHub popup. Your credentials are handled by Firebase, never by this app.
+            <strong style={{ color: '#1a1a2e' }}>Real OAuth active</strong> — Clicking above opens an actual Google popup. Your credentials are handled by Firebase, never by this app.
           </div>
         </div>
 

@@ -1,0 +1,11 @@
+Django>=4.2,<5.0
+djangorestframework
+djangorestframework-simplejwt
+psycopg2-binary
+django-cors-headers
+requests
+# For OAuth
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+stripe

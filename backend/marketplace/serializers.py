@@ -7,7 +7,7 @@ class SessionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Session
-        fields = ['id', 'creator', 'creator_details', 'title', 'description', 'price', 'start_time', 'end_time', 'max_capacity', 'image_url', 'is_active', 'created_at']
+        fields = ['id', 'creator', 'title', 'description', 'price', 'start_time', 'end_time', 'max_capacity', 'image_url', 'is_active', 'created_at']
         read_only_fields = ('creator', 'created_at', 'updated_at')
 
 class BookingSerializer(serializers.ModelSerializer):

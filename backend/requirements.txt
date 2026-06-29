@@ -9,3 +9,7 @@ google-auth
 google-auth-httplib2
 google-auth-oauthlib
 stripe
+# For production
+gunicorn
+dj-database-url
+whitenoise

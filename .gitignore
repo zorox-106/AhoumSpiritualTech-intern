@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.sqlite3
+*.log
+
+# Environment
+.env
+*.env
+!.env.example
+
+# Django
+staticfiles/
+media/
+
+# Node / React
+node_modules/
+dist/
+.DS_Store
+
+# Docker volumes / data
+postgres_data/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

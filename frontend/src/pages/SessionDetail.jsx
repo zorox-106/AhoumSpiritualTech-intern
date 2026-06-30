@@ -181,9 +181,7 @@ export default function SessionDetail() {
         <button onClick={() => navigate(-1)} style={{ background: 'none', border: 'none', padding: 0, color: '#9c9799', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', marginBottom: 24, textDecoration: 'none', fontFamily: 'Inter, sans-serif' }}>
           <IconChevronLeft /> Back
         </button>
-        {session.image_url && (
-          <img src={session.image_url} alt="" style={{ width: '100%', height: 320, objectFit: 'cover', borderRadius: 16, marginBottom: 24 }} />
-        )}
+        {/* image removed */}
         <h1 style={{ fontSize: 36, fontWeight: 800, color: '#1a1a2e', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 20 }}>
           {session.title}
         </h1>

@@ -107,14 +107,11 @@ export default function Dashboard() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: '#f0ece6', borderRadius: 12, overflow: 'hidden', border: '1px solid #e8e5df' }}>
               {bookings.map((booking, idx) => (
                 <div key={booking.id} style={{ background: '#fff', padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 16 }}>
-                  {booking.session?.image_url ? (
-                    <img src={booking.session.image_url} alt="" style={{ width: 48, height: 48, borderRadius: 8, objectFit: 'cover' }} />
-                  ) : (
-                    <div style={{ width: 48, height: 48, background: '#f0ece6', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#b5b0a8', fontWeight: 'bold' }}>
-                      {booking.session?.title.substring(0, 2).toUpperCase()}
-                    </div>
-                  )}
-                  <div style={{ flex: 1 }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 8, background: '#f0ede6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#b5b0a8' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                    </svg>
+                  </div><div style={{ flex: 1 }}>
                     <div style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e', marginBottom: 3 }}>{booking.session?.title}</div>
                     <div style={{ fontSize: 12, color: '#9c9799' }}>
                       {user.role === 'CREATOR'

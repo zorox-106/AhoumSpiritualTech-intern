@@ -92,10 +92,6 @@ export default function Login() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <OAuthButton provider="google" label="Continue with Google" icon={<GoogleIcon />} />
           </div>
-
-          <div style={{ background: '#f8f7f4', border: '1px solid #e8e5df', borderRadius: 10, padding: '12px 14px', fontSize: 12.5, color: '#7a7585', lineHeight: 1.6, marginTop: 20 }}>
-            <strong style={{ color: '#1a1a2e' }}>Real OAuth active</strong> — Clicking above opens an actual Google popup. Your credentials are handled by Firebase, never by this app.
-          </div>
         </div>
 
         <p style={{ textAlign: 'center', color: '#c5c0b8', fontSize: 12, marginTop: 20 }}>

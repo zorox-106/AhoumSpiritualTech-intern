@@ -6,100 +6,100 @@ Below is a log of the key prompts used during the development process.
 
 ## Prompt 1
 **Prompt:**
-<actual prompt>
+`so do it as it is what said in this screenshots`
 
 **Purpose:**
-<why this prompt was used>
+To kickstart the initial development based on design mockups and assignment requirements provided via screenshots.
 
 **Outcome:**
-<how it was used in the project>
+The AI generated the foundational architecture, initialized the React frontend and Django backend, and set up Docker orchestration.
 
 ## Prompt 2
 **Prompt:**
-<actual prompt>
+`how to run and what to do step wise`
 
 **Purpose:**
-<why this prompt was used>
+To request a clear, step-by-step guide on how to start the development environment locally.
 
 **Outcome:**
-<how it was used in the project>
+Provided exact terminal commands to clone the repo, set up environment variables, run docker-compose, and apply database migrations.
 
 ## Prompt 3
 **Prompt:**
-<actual prompt>
+`ye aara bs ab and github ka htade auth and ye seassion firse nhi dikh rhe ab isko thik kr and photos jo seasson me aa rhi h vo htade`
 
 **Purpose:**
-<why this prompt was used>
+To refine the UI and fix bugs: remove GitHub authentication, fix the session listing bug, and remove photos from sessions.
 
 **Outcome:**
-<how it was used in the project>
+Disabled GitHub Auth in the UI, fixed CORS & DB issues causing sessions not to load, and removed the `image_url` field from the codebase.
 
 ## Prompt 4
 **Prompt:**
-<actual prompt>
+`kuch bhi push nhi kia tune and same hi error aara h thoda chota bta dega mujhe tu?`
 
 **Purpose:**
-<why this prompt was used>
+To report that a Firebase error persisted because changes were not pushed, and to request a brief explanation in Hinglish.
 
 **Outcome:**
-<how it was used in the project>
+Force-pushed the Firebase environment variable fix to the GitHub repository and provided a concise explanation of the issue.
 
 ## Prompt 5
 **Prompt:**
-<actual prompt>
+`or api kha milengi ye sb firebase ka`
 
 **Purpose:**
-<why this prompt was used>
+To find out where to locate the required Firebase configuration keys for the frontend setup.
 
 **Outcome:**
-<how it was used in the project>
+Provided step-by-step instructions on navigating the Firebase console to find the web app config snippet.
 
 ## Prompt 6
 **Prompt:**
-<actual prompt>
+`dalni ase h apiKey ya jo tune btaya vse`
 
 **Purpose:**
-<why this prompt was used>
+To clarify the exact naming convention for environment variables in Vercel for Vite.
 
 **Outcome:**
-<how it was used in the project>
+Explained the `VITE_` prefix requirement and provided an exact mapping table for the environment variables to be pasted into Vercel.
 
 ## Prompt 7
 **Prompt:**
-<actual prompt>
+`dekh ab sb thik h bss Available Sessions 0 dikha rha h and jo likha h login pe usko htade "Real OAuth active..."`
 
 **Purpose:**
-<why this prompt was used>
+To troubleshoot the empty session catalog issue and remove a specific informational text block from the login UI.
 
 **Outcome:**
-<how it was used in the project>
+Investigated a 500 error on the backend caused by a missing serializer field, removed the requested UI text, and pushed the fixes.
 
 ## Prompt 8
 **Prompt:**
-<actual prompt>
+`remove this and delete unwanted files do not change the code or anything which cause me again a loss of time`
 
 **Purpose:**
-<why this prompt was used>
+To clean up the repository by removing unneeded boilerplate files and strictly avoid introducing new bugs.
 
 **Outcome:**
-<how it was used in the project>
+Safely deleted untracked Vite/Tailwind configuration files that were no longer necessary and pushed the clean state to production.
 
 ## Prompt 9
 **Prompt:**
-<actual prompt>
+`.env example ye file jaroori h? and readme ko shi krde chota and meaningfull and not look like a ai`
 
 **Purpose:**
-<why this prompt was used>
+To question the necessity of the `.env.example` file and request a more concise, human-readable README.
 
 **Outcome:**
-<how it was used in the project>
+Deleted the unnecessary `.env.example` file and completely rewrote `README.md` to be a minimal, professional developer guide without AI-like fluff.
 
 ## Prompt 10
 **Prompt:**
-<actual prompt>
+`Create a professional PROMPT_LOG.md file for my GitHub repository. Requirements: ...`
 
 **Purpose:**
-<why this prompt was used>
+To generate documentation logging the AI interactions and prompts used during the project's development.
 
 **Outcome:**
-<how it was used in the project>
+Created a properly formatted `PROMPT_LOG.md` file with placeholders, later populated with the actual prompt history.
